@@ -1,0 +1,12 @@
+[
+  {
+    "type": "MOD_INFO",
+    "id": "craftable_caseless",
+    "name": "Make Rivtech great again",
+    "authors": [ "MrSamu99" ],
+    "description": "Some 8x40 additions: new HWP barrel, makeshift AP rounds and more",
+    "category": "items",
+    "dependencies": [ "dda" ],
+    "obsolete": false
+  }
+]

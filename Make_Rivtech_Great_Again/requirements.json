@@ -1,0 +1,14 @@
+[
+	{
+		"id": "bootleg_molding",
+		"type": "requirement",
+		"//": "Melting and reshaping plastic items through the use of vacuum forming molds, per 70 g of plastic. Usually takes 30 minutes per unit.",
+		"qualities": [ { "id": "CUT", "level": 2 } ],
+		"tools": [ 
+			[ [ "makeshift_vacuum_mold", 4 ], [ "vac_mold", 2 ] ],
+			[ [ "surface_heat", 7, "LIST" ] ],
+			[ [ "forge", 20 ], [ "oxy_torch", 20 ], [ "fake_arc_furnace", 10 ] ] 
+		],
+		"components": [ [ [ "polycarbonate_sheet", 1 ] ] ]
+	}
+]
