@@ -1,0 +1,76 @@
+[
+  {
+    "id": "TALK_ROBOFAC_INTERCOM_HWP_RIVTECH",
+    "//": "creating Rivtech barrel",
+    "type": "talk_topic",
+    "dynamic_line": "Yes, we can print a barrel for Rivtech caseless rounds, since we have all specifications for such ammo. It will take 3 days and 2 Coins",
+    "responses": [
+      {
+        "text": "[2 HGC] See you in 3 days.",
+        "condition": { "u_has_items": { "item": "RobofacCoin", "count": 2 } },
+        "effect": [
+          { "u_sell_item": "RobofacCoin", "count": 2 },
+          { "u_add_faction_trust": 1 },
+          { "u_add_var": "u_waiting_on_hub", "type": "timer", "context": "hub_rnd", "time": true },
+          { "u_add_var": "u_project_ongoing", "type": "dialogue", "context": "hub_rnd", "value": "yes" },
+          { "u_add_var": "u_current_project", "type": "dialogue", "context": "hub_rnd", "value": "hwp_rivtech" }
+        ],
+        "topic": "TALK_ROBOFAC_INTERCOM_SERVICES"
+      },
+      { "text": "What about another project?", "topic": "TALK_ROBOFAC_INTERCOM_PROTOTYPE_MENU" },
+      { "text": "I want to talk about something else.", "topic": "TALK_ROBOFAC_INTERCOM_SERVICES" },
+      { "text": "I'll check in later.", "topic": "TALK_DONE" }
+    ]
+  },
+  {
+    "id": "TALK_ROBOFAC_INTERCOM_HWP_RIVTECH_COMPLETE",
+    "//": "creating Rivtech barrel",
+    "type": "talk_topic",
+    "dynamic_line": "The barrel is finished. ",
+    "responses": [
+      {
+        "text": "Thanks.",
+        "effect": [
+          { "u_add_var": "u_current_project", "type": "dialogue", "context": "hub_rnd", "value": "none" },
+          { "u_add_var": "u_project_ongoing", "type": "dialogue", "context": "hub_rnd", "value": "no" },
+          { "u_spawn_item": "robofac_gun_caseless" }
+        ],
+        "topic": "TALK_ROBOFAC_INTERCOM_SERVICES"
+      }
+    ]
+  },
+  {
+	"id": "TALK_ROBOFAC_INTERCOM_PROTOTYPE_MENU",
+	"type": "talk_topic",
+	"responses": [
+	  {
+		"text": "Can you make me a barrel for Rivtech ammo?",
+		"condition": {
+			"not": { "u_has_var": "u_project_ongoing", "type": "dialogue", "context": "hub_rnd", "value": "yes" }
+		},
+		"topic": "TALK_ROBOFAC_INTERCOM_HWP_RIVTECH"
+	  },
+	  {
+		"text": "Any progress on the Rivtech barrel?",
+		"condition": {
+			"and": [
+				{ "u_compare_time_since_var": "u_waiting_on_hub", "type": "timer", "context": "hub_rnd", "op": "<", "time": "3 d" },
+				{ "u_has_var": "u_current_project", "type": "dialogue", "context": "hub_rnd", "value": "hwp_rivtech" }
+			]
+		},
+		"topic": "TALK_ROBOFAC_INTERCOM_PROTOTYPE_ONGOING"
+	  },
+	  {
+		"text": "The Rivtech barrel should be finished now right?",
+		"condition": {
+			"and": [
+				{ "u_compare_time_since_var": "u_waiting_on_hub", "type": "timer", "context": "hub_rnd", "op": ">", "time": "3 d" },
+				{ "u_has_var": "u_current_project", "type": "dialogue", "context": "hub_rnd", "value": "hwp_rivtech" }
+			]
+		},
+		"topic": "TALK_ROBOFAC_INTERCOM_HWP_RIVTECH_COMPLETE"
+	  }
+	]
+  }
+  
+]
